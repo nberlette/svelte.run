@@ -2,6 +2,7 @@
   "name": "svelte.run",
   "version": "0.1.0",
   "private": false,
+  "license": "MIT",
   "author": {
     "name": "Nicholas Berlette",
     "email": "nick@berlette.com",
