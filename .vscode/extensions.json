@@ -1,3 +1,11 @@
 {
-  "recommendations": ["svelte.svelte-vscode"]
+  "recommendations": [
+    "svelte.svelte-vscode",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"voorjaar.windicss-intellisense",
+		"ms-azuretools.vscode-docker",
+		"silvenon.mdx",
+		"eamodio.gitlens"
+  ]
 }
