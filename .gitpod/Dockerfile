@@ -4,12 +4,17 @@
 ## ---------------------------- ##
 FROM gitpod/workspace-full
 
-# update the cache and upgrade all runtime tools
-RUN echo "\e[1;36mUpdating cache...\e[0m" && sudo apt-get update ;
-RUN echo "\e[1;35mUpgrading all dependencies...\e[0m" && sudo apt-get -y upgrade ;
+# update the cache (kind of slow)
+RUN echo "\e[1;36mUpdating cache...\e[0m" && sudo apt-get update
 
-# install custom tools like git-extras, neovim etc.
-RUN echo "\e[1;32mInstalling git-extras and nvim...\e[0m" && sudo apt-get install -y git-extras neovim ;
+# now, upgrade all pkgs. -> NOTE: this step can take LITERAL FCKING FOREVER.
+# if you want to trade speed for potentially out-of-date software...
+# then comment the next line out to disable the upgrade.
+
+# RUN echo "\e[1;35mUpgrading all dependencies...\e[0m" && sudo apt-get -y upgrade
+
+RUN echo "\e[1;32mInstalling git-extras and nvim...\e[0m" && sudo apt-get install -y git-extras neovim 
+    # add extra packages after last item above (space-separated)
 
 ## ------------ ##
 ## START PROMPT ##
@@ -23,18 +28,17 @@ ENV GIT_PS1_SHOWUPSTREAM='auto verbose name legacy git' \
     GIT_PS1_DESCRIBE_STYLE='branch' \
     GIT_PS1_OMITSPARSESTATE='1'
 
-# pull git-prompt.sh from git repo, copy to /home/gitpod/.bashrc.d/
 RUN echo "\e[1;36mDownloading git-prompt.sh from github:git/git#master...\e[0m" \
     && curl -sSL "https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh" \
               -o "$HOME/.bashrc.d/10-git-ps1";
 
-# add to .bashrc
 RUN echo "\e[1;32mAppending code to .bashrc...\e[0m" \
-    && echo '\n\n## git-prompt.sh\n[ -f "$HOME/.bashrc.d/10-git-ps1" ] && . "$HOME/.bashrc.d/10-git-ps1";\n\n' >> "$HOME/.bashrc";
+    && echo '\n\n## git-prompt.sh\n[ -f "$HOME/.bashrc.d/10-git-ps1" ] && . "$HOME/.bashrc.d/10-git-ps1";\n\n' \
+    >> "$HOME/.bashrc";
 
-# add PROMPT_COMMAND to .bashrc
 RUN echo "\e[1;35mSetting PROMPT_COMMAND...\e[0m" \
-    && echo "export PROMPT_COMMAND='__git_ps1 \"\[]0;\u \w\]\[[01;32m\]\u\[[00m\] \[[01;34m\]\w\[[00m\]\" \" \$ \" \" git:(%s)\"';\n\n" >> "$HOME/.bashrc";
+    && echo "export PROMPT_COMMAND='__git_ps1 \"\[]0;\u \w\]\[[01;32m\]\u\[[00m\] \[[01;34m\]\w\[[00m\]\" \" \$ \" \" git:(%s)\"';\n\n" \
+    >> "$HOME/.bashrc";
 
 # fin
 
