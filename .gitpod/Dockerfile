@@ -1,28 +1,20 @@
-## ------------------------- ##
-## SAVE.JS GITPOD DOCKERFILE ##
-##     © 2021 @nberlette     ##
-## ------------------------- ##
+## ---------------------------- ##
+## SVELTE.RUN GITPOD DOCKERFILE ##
+##      © 2021 @nberlette       ##
+## ---------------------------- ##
 FROM gitpod/workspace-full
 
 # update the cache and upgrade all runtime tools
-RUN echo "\e[1;36mUpdating cache...\e[0m" \
-    && sudo apt-get update ;
-RUN echo "\e[1;35mUpgrading all dependencies...\e[0m" \
-    && sudo apt-get -y upgrade ;
+RUN echo "\e[1;36mUpdating cache...\e[0m" && sudo apt-get update ;
+RUN echo "\e[1;35mUpgrading all dependencies...\e[0m" && sudo apt-get -y upgrade ;
 
 # install custom tools like git-extras, neovim etc.
-RUN echo "\e[1;32mInstalling git-extras and nvim...\e[0m" \
-    && sudo apt-get install -y git-extras neovim ;
-
-## ----------------------------------------- ##
-## user-specific settings and installs below ##
-## ----------------------------------------- ##
+RUN echo "\e[1;32mInstalling git-extras and nvim...\e[0m" && sudo apt-get install -y git-extras neovim ;
 
 ## ------------ ##
 ## START PROMPT ##
 ## ------------ ##
 
-# set env
 RUN echo "\e[1;33mSetting GIT_PS1 ENV defaults...\e[0m"
 ENV GIT_PS1_SHOWUPSTREAM='auto verbose name legacy git' \
     GIT_PS1_SHOWCOLORHINTS='1' \
@@ -56,7 +48,7 @@ RUN echo "\e[1;36mInstalling pnpm, standard, ts-standard, and degit suite...\e[0
 
 # add pnpm and yarn stuff to PATH
 RUN echo "\e[1;35mAdding yarn/pnpm/npm global bin dirs to PATH...\e[0m" \
-    && echo "\n\nexport PATH=\"$(yarn global bin):$(npm -g bin):$PATH\";" >> "$HOME/.bashrc"
+    && echo "\n\nexport PATH=$(yarn global bin):$PATH" >> "$HOME/.bashrc"
 
 # good to go!
 RUN echo "\e[1;4;32mYou're all good to go! Happy coding! :)\e[0m"
