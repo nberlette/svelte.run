@@ -1,0 +1,28 @@
+image:
+  file: .gitpod/Dockerfile
+tasks:
+  - name: "Dev Server"
+    before: pnpm install
+    command: pnpm run dev
+ports:
+  - port: 3000
+    onOpen: notify
+  - port: 5000
+    onOpen: notify
+github:
+  prebuilds:
+    master: true
+    branches: true 
+    pullRequests: true
+    pullRequestsFromForks: false
+    addLabel: true
+    addBadge: true
+vscode:
+  extensions:
+    - "svelte.svelte-vscode"
+    - "esbenp.prettier-vscode"
+    - "dbaeumer.vscode-eslint"
+    - "voorjaar.windicss-intellisense"
+    - "ms-azuretools.vscode-docker"
+    - "silvenon.mdx"
+    - "eamodio.gitlens"
