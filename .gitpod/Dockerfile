@@ -56,7 +56,7 @@ RUN echo "\e[1;36mInstalling pnpm, standard, ts-standard, and degit suite...\e[0
 
 # add pnpm and yarn stuff to PATH
 RUN echo "\e[1;35mAdding yarn/pnpm/npm global bin dirs to PATH...\e[0m" \
-    && echo "\n\nexport 'PATH=\"$(yarn global bin):$(npm -g bin):$PATH\"';" >> "$HOME/.bashrc"
+    && echo "\n\nexport PATH=\"$(yarn global bin):$(npm -g bin):$PATH\";" >> "$HOME/.bashrc"
 
 # good to go!
 RUN echo "\e[1;4;32mYou're all good to go! Happy coding! :)\e[0m"
