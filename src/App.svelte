@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let name = 'svelte.run'
+	export let name = 'Svelte.run()'
 	export let url = 'https://svelte.run'
-	export let image = 'https://og-image.vercel.app/%3Ccode%3E%3Cb%3Esvelte.run%3C%2Fb%3E%3C%2Fcode%3E%3Cstyle%3Ebody%7Bbackground-color%3A%23112233%3B%7Dimg%3Afirst-child%2C.plus%2Ccode%3A%3Abefore%2Ccode%3A%3Aafter%7Bdisplay%3Anone%3B%7Dcode%7Btext-shadow%3A0%200.1em%200.05em%20rgba(0%2C0%2C0%2C0.15)%3Bcolor%3A%23ff3e00%3B%7D%3C%2Fstyle%3E.png?theme=dark&md=1&fontSize=120px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Flogo.svg&images=https%3A%2F%2Fsvelte.run%2Ficon.svg&heights=0&widths=0&widths=350&widths=350&heights=350&heights=350'
+
+	// twitter/opengraph image
+	// svelte.run + vercel logos (dark)
+	export let image = '/og.png';
+	// export let image = '/og-light.png';
 </script>
 
 <svelte:head>
@@ -18,9 +22,13 @@
 
 <main>
 	<h1>{name}</h1>
-	<p class="bottom">
-		deployed with vercel &middot;  <a href="https://github.com/svelterun">github</a>
-	</p>
+	<footer class="bottom">
+		<a href="https://github.com/svelterun">GitHub</a>
+		&middot;
+		<a href="https://vercel.com" target="_blank" rel="noreferrer nooopener">Deployed with Vercel</a>
+		&middot;  
+		<a href="https://github.com/nberlette">@nberlette</a>
+	</footer>
 </main>
 
 <style>
@@ -29,9 +37,9 @@
 		cursor: default;
 		color: inherit;
 	}
-	.bottom {
+	footer.bottom {
 		position: absolute;
-		bottom: 2em;
+		bottom: 10vh;
 		width: 100%;
 		display: block;
 		left: 0;
@@ -39,15 +47,18 @@
 	}
 	main {
 		text-align: center;
-		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
+		padding: 0;
+		max-width: 240px;
+		min-height: calc(100vh);
+		height: 100vh;
+		position: relative;
 	}
 
 	h1 {
 		color: #ff3e00;
 		text-transform: lowercase;
-		font-size: 6em;
+		font-size: 15vw;
 		font-weight: 100;
 		cursor: default;
 		display: block;
@@ -56,6 +67,10 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+	}
+
+	footer, footer a {
+		text-transform: lowercase;
 	}
 
 	@media (min-width: 640px) {
