@@ -2,7 +2,6 @@
 	export let name = 'Svelte.run()'
 	export let url = 'https://svelte.run'
 
-	// twitter/opengraph image
 	// svelte.run + vercel logos (dark)
 	export let image = '/og.png';
 	// export let image = '/og-light.png';
@@ -23,10 +22,10 @@
 <main>
 	<h1>{name}</h1>
 	<footer class="bottom">
-		<a href="https://github.com/svelterun">GitHub</a>
+		<a href="https://github.com/svelterun">@svelterun</a>
 		&middot;
 		<a href="https://vercel.com" target="_blank" rel="noreferrer nooopener">Deployed with Vercel</a>
-		&middot;  
+		&middot;
 		<a href="https://github.com/nberlette">@nberlette</a>
 	</footer>
 </main>
