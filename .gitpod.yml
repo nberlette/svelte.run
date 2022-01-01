@@ -1,7 +1,6 @@
-image:
-  file: .gitpod/Dockerfile
+image: nberlette/gitpod-enhanced:latest
 tasks:
-  - name: "Dev Server"
+  - name: "Preview"
     before: pnpm install
     command: pnpm run dev
 ports:
@@ -11,10 +10,7 @@ ports:
     onOpen: notify
 github:
   prebuilds:
-    master: true
-    branches: true 
-    pullRequests: true
-    pullRequestsFromForks: false
+    branches: true
     addLabel: true
     addBadge: true
 vscode:
@@ -23,6 +19,4 @@ vscode:
     - "esbenp.prettier-vscode"
     - "dbaeumer.vscode-eslint"
     - "voorjaar.windicss-intellisense"
-    - "ms-azuretools.vscode-docker"
-    - "silvenon.mdx"
     - "eamodio.gitlens"
